@@ -2,7 +2,7 @@
 next permutation
 steps to identify the next permutation
 - find the first decreasing element from the back
-- swap that decreasing element with the smallest element from the back
+- swap that smallest element larger then pivot
 - then reverse the sequence after the swap index
 
 [1, 4, 3, 2]
