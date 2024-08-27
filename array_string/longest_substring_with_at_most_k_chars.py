@@ -30,7 +30,7 @@ ccaabbb
       r
 
 """
-
+from collections import defaultdict
 class Solution:
     def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
         sub_set = set()
@@ -42,7 +42,7 @@ class Solution:
                     count[s[right]] += 1
                 else:
                     sub_set.add(s[right])
-                    count[s[right]] = 1
+                    count[s[right]] = count.get(s[right], 0) + 1
                     item_to_remove = s[left]
                     while count[item_to_remove] > 0:
                         count[s[left]] -= 1
@@ -54,9 +54,24 @@ class Solution:
                 max_sub_string = max(max_sub_string , right - left + 1)
             else:
                 sub_set.add(s[right])
-                count[s[right]] = 1
+                count[s[right]] = count.get(s[right], 0) + 1
                 max_sub_string = max(max_sub_string , right - left + 1)
 
             right += 1
 
         return max_sub_string
+    
+    def lengthOfLongestSubstringKDistinct2(self, s: str, k: int) -> int:
+        counter = defaultdict(int)
+        left = right = max_length = 0
+        while right < len(s):
+            counter[s[right]] += 1
+            if len(counter) <= k:
+                max_length = max(max_length, right - left + 1)
+            else:
+                if left < right:
+                    counter[s[left]] -= 1
+                    if counter[s[left]] == 0:
+                        counter.pop(s[left])
+                    
+                    left -= 1
