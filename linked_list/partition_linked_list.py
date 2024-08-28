@@ -19,22 +19,20 @@ class ListNode:
 
 class Solution:
     def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
-        slist = ListNode()
-        blist = ListNode()
-        s, b = slist, blist
-
+        big_list = ListNode()
+        small_list = ListNode()
+        big, small = big_list, small_list
         while head:
-            if head.val > x:
-                b.next = head
-                b = b.next
+            if head.val >= x:
+                big.next = head
+                big = big.next
             else:
-                s.next = head
-                s = s.next
-            
+                small.next = head
+                small = small.next
             head = head.next
 
-        s.next = blist
-        b.next = None
+        small.next = big_list.next
+        big.next = None
 
-        return slist.next
+        return small_list.next
     
