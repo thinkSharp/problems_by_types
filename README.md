@@ -10,3 +10,9 @@ Categorize leetcode problems in general category
    - binary search in grid - row then column
    - binary search in grid - 1D array
    - find peak in a grid
+
+2. Array_String
+3. Heap
+4. Linked_List
+5. Stack
+
